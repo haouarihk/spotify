@@ -1,10 +1,13 @@
-import { Metadata } from 'next';
+import { Metadata } from 'next/types';
 import * as React from 'react';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
+import { SidebarHandler } from '@/components/sidebar-handler';
+
+import Context from '@/app/context';
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -56,7 +59,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body className='h-screen w-screen'>
+        <Context>
+          <SidebarHandler>{children}</SidebarHandler>
+        </Context>
+      </body>
     </html>
   );
 }
